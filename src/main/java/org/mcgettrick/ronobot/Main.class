@@ -1,9 +1,0 @@
-import org.jibble.pircbot.*;
-
-public class RonoBot extends PircBot {
-    
-    public MyBot() {
-        this.setName("ronobot");
-    }
-    
-}
