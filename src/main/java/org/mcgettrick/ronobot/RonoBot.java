@@ -1,8 +1,10 @@
-import org.jibble.pircbot.*;
+package org.mcgettrick.ronobot;
+
+import org.jibble.pircbot.PircBot;
 
 public class RonoBot extends PircBot {
 
-    public MyBot() {
+    public RonoBot() {
         this.setName("ronobot");
     }
 
