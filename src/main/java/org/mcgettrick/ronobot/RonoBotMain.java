@@ -16,5 +16,6 @@ public class RonoBotMain {
         bot.connect("irc.freenode.net");
 
         bot.joinChannel("#ronobot-test");
+        //bot.joinChannel("#bitswebteam");
     }
 }
