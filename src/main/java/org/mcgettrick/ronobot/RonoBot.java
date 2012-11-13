@@ -13,6 +13,12 @@ public class RonoBot extends PircBot {
         if (message.equalsIgnoreCase("!time")) {
             String time = new java.util.Date().toString();
             sendMessage(channel, sender + ": The time is now " + time);
+        }       
+        
+        if (message.equalsIgnoreCase("Good Morning")){
+        	sendMessage(channel, "Good Morning " + sender.toString() + " today is an awesome AT Day");
+        	
         }
+        
     }
 }

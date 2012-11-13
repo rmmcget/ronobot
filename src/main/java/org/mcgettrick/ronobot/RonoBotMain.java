@@ -15,7 +15,7 @@ public class RonoBotMain {
         // Connect to the IRC server.
         bot.connect("irc.freenode.net");
 
-        bot.joinChannel("#ronobot-test");
-        //bot.joinChannel("#bitswebteam");
+        //bot.joinChannel("#ronobot-test");
+        bot.joinChannel("#bitswebteam");
     }
 }
