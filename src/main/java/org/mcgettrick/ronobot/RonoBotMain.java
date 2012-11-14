@@ -1,6 +1,5 @@
 package org.mcgettrick.ronobot;
 
-import org.jibble.pircbot.*;
 
 public class RonoBotMain {
     
