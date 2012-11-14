@@ -12,12 +12,12 @@ public class RonoBot extends PircBot {
     public void onMessage(String channel, String sender,
                         String login, String hostname, String message) {
         
-        if (message.equalsIgnoreCase("ATTime")){
+        if (message.equalsIgnoreCase("!ATTime")){
         	BotTime timestamp = new BotTime();
         	sendMessage(channel, timestamp.getGMTMessage());
         }
         
-        if (message.equalsIgnoreCase("MissionTime")){
+        if (message.equalsIgnoreCase("!MissionTime")){
         	BotTime timestamp = new BotTime();
         	sendMessage(channel, timestamp.getTotalHoursLeftOfWork());
         }
