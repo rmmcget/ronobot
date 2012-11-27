@@ -31,7 +31,7 @@ public class BotTime {
 		String totalHoursToGo = null;
 		String hoursLeftOfWorkMessage = null;
 		
-		currentHour = cal.get(Calendar.HOUR_OF_DAY);
+		currentHour = currenthour();
 		
 		if (currentHour < endofDay ) {
 			totalHoursToGo = Integer.toString(endofDay - currentHour);
@@ -44,13 +44,18 @@ public class BotTime {
 		}	
 		return hoursLeftOfWorkMessage;
 
-		
+}
+
+	public int currenthour() {
+		int currentHour;
+		currentHour = cal.get(Calendar.HOUR_OF_DAY);
+		return currentHour;
 	}
 	
-
+	public int currentMinute() {
+		int currentMinute;
+		currentMinute = cal.get(Calendar.MINUTE);
+		return currentMinute;
+	}
 	
-
-
-	
-
 }

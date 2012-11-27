@@ -4,8 +4,6 @@ import lombok.Data;
 
 @Data
 public class Sender {
-	
-private String name;
 
 private Integer id;
 

@@ -1,6 +1,7 @@
 package org.mcgettrick.ronobot;
 
 
+
 public class RonoBotMain {
     
     public static void main(String[] args) throws Exception {
@@ -16,5 +17,6 @@ public class RonoBotMain {
 
         //bot.joinChannel("#ronobot-test");
         bot.joinChannel("#bitswebteam");
+     
     }
 }
