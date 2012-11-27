@@ -9,7 +9,8 @@ public class Helper {
 	private Helper(){
 		
 	}
-
+	
+	
 	public static String getSpecialMessages(String message,String sender){
 		
 		if (message.equalsIgnoreCase("!ATTime")){
@@ -73,7 +74,7 @@ public class Helper {
 			mySender.setDefaultGreeting(" : Buenos Diaz Amigos (aka Good Morning) !");
 			mySender.setMorningGreeting(" : Morning");
 			mySender.setMidDayGreeting(" : So have you seen bitsbot ?");
-			mySender.setAfternoonGreeting(" : quiting time coming soon....");
+			mySender.setAfternoonGreeting(" : My complex algorithms is giving me a headache shortly time to put me to bed");
 			break;
 		default:
 			mySender.setId(senderId);
@@ -90,27 +91,23 @@ public class Helper {
 	public static int getUserId (String sender) {
 		int userId;
 				
-		if (sender.equalsIgnoreCase("enricopulatzo")){
+		if (sender.equalsIgnoreCase("sysbajesse")){
 			userId = 0;
 		} 
-		else if (sender.equalsIgnoreCase(" jathom5")) {
+		else if (sender.equalsIgnoreCase("sys_kmburke1")) {
 			userId = 1;
 		}
-		else if (sender.equalsIgnoreCase("nathanic")) {
+		else if (sender.equalsIgnoreCase("enricopulatzo")) {
 			userId = 2;
 		}
-		else if (sender.equalsIgnoreCase("sysbajesse")) {
+		else if (sender.equalsIgnoreCase("jathom5")) {
 			userId = 3;
 		}
-		else if (sender.equalsIgnoreCase("sys_kmburke1")) {
+		else if (sender.equalsIgnoreCase("nathanic")) {
 			userId = 4;
 		}
-		else if (sender.equalsIgnoreCase("rmmcget")) {
-			userId = 5;
-			
-		}
 		else{
-			userId = 6;
+			userId = 5;
 		}
 		
 		return userId;

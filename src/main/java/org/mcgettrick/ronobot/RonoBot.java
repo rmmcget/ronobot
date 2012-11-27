@@ -40,20 +40,27 @@ public class RonoBot extends PircBot {
     	String messageToSend = null;
     	Integer userId = null; 	
     	int currentHour = serverTime.currenthour();
+
     	   	 	
-    	if ((currentHour == 9) || (currentHour == 14) || (currentHour == 16)) {
+    	if (ifSpecialMessage(botMessages)) {
+    		
+    		messageToSend = Helper.getSpecialMessages(botMessages, sender);
+    		
+    	}else {
+    		
+    		
     		userId = Helper.getUserId(sender);
     		
     		if (messagesMap.containsKey(userId)){
     			Sender myMessage = messagesMap.get(userId);
-    			if (currentHour == 9 ){
+    			if ((currentHour == 8 ) || (currentHour == 9)) {
     				
     				if (mMsgSentCnt == 0) {
     					messageToSend = sender + myMessage.getMorningGreeting();
         				mMsgSentCnt = mMsgSentCnt + 1;
     				}
     				   				
-    			}else if (currentHour == 13){
+    			}else if ((currentHour == 13) ||(currentHour == 14)){
     				if (aMsgSentCnt == 0) {
     					messageToSend = sender + myMessage.getMidDayGreeting();
         				aMsgSentCnt = aMsgSentCnt + 1;
@@ -66,9 +73,6 @@ public class RonoBot extends PircBot {
     				} 				
     			}   			
     		}
-    		
-    	}else {
-    		messageToSend = Helper.getSpecialMessages(botMessages, sender);
     	}  	
 
     	return messageToSend;
@@ -87,42 +91,49 @@ public class RonoBot extends PircBot {
     	
     	switch (userId) {
 		case 0:
+			sendMessage(channel, responseMessage);
 			
-			//1st 10 minutes
-			if (serverTime.currentMinute() < 11){
-				sendMessage(channel, responseMessage);
-			}
 			break;
 		case 1:
-			//11 minutes to 21 minutes
-			if (serverTime.currentMinute() > 10 & serverTime.currentMinute() < 22){
+			//1 minutes to 11 minutes
+			if (serverTime.currentMinute() > 0 & serverTime.currentMinute() < 12){
 				sendMessage(channel, responseMessage);
 			}
 			break;
 		case 2:
-			//22 minutes to 31 minutes
-			if (serverTime.currentMinute() > 21 & serverTime.currentMinute() < 32){
+			//11 minutes to 30 minutes
+			if (serverTime.currentMinute() > 11 & serverTime.currentMinute() < 31){
 				sendMessage(channel, responseMessage);
 			}
 			break;
 		case 3:
-			//32 minutes to 41 minutes
-			if (serverTime.currentMinute() > 31 & serverTime.currentMinute() < 42){
+			//6 minutes to 45 minutes
+			if (serverTime.currentMinute() > 5 & serverTime.currentMinute() < 46){
 				sendMessage(channel, responseMessage);
 			}
 			break;
 		case 4:
-			//greater than 42 minutes 
-			if (serverTime.currentMinute() > 41 ){
+			//greater than 6 minutes 
+			if (serverTime.currentMinute() > 6 ){
 				sendMessage(channel, responseMessage);
 			}
 			break;
 			
 		default:
 			sendMessage(channel, responseMessage);
+			break;
 		}
 		
 	}
+    
+    public static boolean ifSpecialMessage(String message){
+		boolean decision = false;
+		if ((message.equalsIgnoreCase("!ATTime")) || (message.equalsIgnoreCase("!MissionTime"))){
+			decision = true;
+		}
+		return decision;
+		
+	}		
     
     
 }
