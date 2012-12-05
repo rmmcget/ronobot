@@ -10,9 +10,15 @@ public class BotTime {
 	
 	private Timestamp nowTime;
 	private Calendar cal;
+	private int currentHour;
+	private int currentMinute;
+	
 	
 	public BotTime() {
 		getTimeNow();
+		currentHour = currentHour();
+		currentMinute = currentMinute();
+		
 	}
 			
 	private void getTimeNow() {
@@ -26,16 +32,17 @@ public class BotTime {
 	}
 	
 	public String getTotalHoursLeftOfWork(){
-		int currentHour;
 		int endofDay = 17;
+		int totalMinutes = 60;
 		String totalHoursToGo = null;
+		String totalMinutesToGo = null;
 		String hoursLeftOfWorkMessage = null;
 		
-		currentHour = currenthour();
 		
 		if (currentHour < endofDay ) {
 			totalHoursToGo = Integer.toString(endofDay - currentHour);
-			hoursLeftOfWorkMessage = "Soldier you have  " + totalHoursToGo + " hours to go before it party time";
+			totalMinutesToGo = Integer.toString(totalMinutes - currentMinute);
+			hoursLeftOfWorkMessage = "Soldier you have  " + totalHoursToGo + " hours and " + totalMinutesToGo + " minutes before you can move your convoy out !";
 			
 			
 		}else{
@@ -46,13 +53,13 @@ public class BotTime {
 
 }
 
-	public int currenthour() {
+	private int currentHour() {
 		int currentHour;
 		currentHour = cal.get(Calendar.HOUR_OF_DAY);
 		return currentHour;
 	}
 	
-	public int currentMinute() {
+	private int currentMinute() {
 		int currentMinute;
 		currentMinute = cal.get(Calendar.MINUTE);
 		return currentMinute;

@@ -1,9 +1,17 @@
 package org.mcgettrick.ronobot;
 
+import static org.mcgettrick.ronobot.RonoBotMain.USER1;
+import static org.mcgettrick.ronobot.RonoBotMain.USER2;
+import static org.mcgettrick.ronobot.RonoBotMain.USER3;
+import static org.mcgettrick.ronobot.RonoBotMain.USER4;
+import static org.mcgettrick.ronobot.RonoBotMain.USER5;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jibble.pircbot.Colors;
 import org.jibble.pircbot.PircBot;
+import org.jibble.pircbot.User;
 import org.mcgettrick.sender.Sender;
 import org.mcgettrick.time.BotTime;
 import org.mcgettrick.utilities.Helper;
@@ -11,17 +19,13 @@ import org.mcgettrick.utilities.Helper;
 
 public class RonoBot extends PircBot {
 	
-	private int mMsgSentCnt = 0;
-	private int aMsgSentCnt = 0;
-	private int eMsgSentCnt = 0;
 
     public RonoBot() {
         this.setName("ronobot");
-        loadSenders();
     }
     
    
-    private Map<Integer, Sender> messagesMap = new HashMap<Integer, Sender>();
+    private Map<String, Sender> messagesMap = new HashMap<String, Sender>();
     
     private BotTime serverTime = new BotTime();
 
@@ -34,94 +38,87 @@ public class RonoBot extends PircBot {
     		sendBotMessage(channel, responseMessage, sender);  
     	}  	     
     }
+    
+    public void onUserList(String channel, User[] users){
+    	for(int i=0; i<users.length; i++){
+    		User user = users[i];
+    		String nick = user.getNick();
+    		Sender sender = Helper.setSenderMessages(nick);
+    		messagesMap.put(nick, sender);
+    	}
+    }
  
     
     private String getMessages(String botMessages, String sender){
     	String messageToSend = null;
-    	Integer userId = null; 	
-    	int currentHour = serverTime.currenthour();
+    	int currentHour = serverTime.getCurrentHour();
 
     	   	 	
     	if (ifSpecialMessage(botMessages)) {
     		
     		messageToSend = Helper.getSpecialMessages(botMessages, sender);
     		
-    	}else {
-    		
-    		
-    		userId = Helper.getUserId(sender);
-    		
-    		if (messagesMap.containsKey(userId)){
-    			Sender myMessage = messagesMap.get(userId);
-    			if ((currentHour == 8 ) || (currentHour == 9)) {
+    	}else { 		
+    		if (messagesMap.containsKey(sender)){
+    			Sender myMessage = messagesMap.get(sender);
+    			if ((currentHour == 8 ) || (currentHour == 9) || (currentHour == 10)) {
     				
-    				if (mMsgSentCnt == 0) {
+    				if (myMessage.getMorningCnt() == 0) {
     					messageToSend = sender + myMessage.getMorningGreeting();
-        				mMsgSentCnt = mMsgSentCnt + 1;
+    					myMessage.setMorningCnt(myMessage.getMorningCnt() + 1);
+
     				}
     				   				
-    			}else if ((currentHour == 13) ||(currentHour == 14)){
-    				if (aMsgSentCnt == 0) {
-    					messageToSend = sender + myMessage.getMidDayGreeting();
-        				aMsgSentCnt = aMsgSentCnt + 1;
+    			}else if ((currentHour == 11) ||(currentHour == 12) ||(currentHour == 13)){
+    				if (myMessage.getLunchCnt() == 0) {
+    					messageToSend = sender + myMessage.getMorningGreeting();
+    					myMessage.setLunchCnt(myMessage.getLunchCnt() + 1);
+
     				}
     				
-    			}else {
-    				if (eMsgSentCnt== 0){
+    			}else if ((currentHour == 14) ||(currentHour == 15)) {
+    				if (myMessage.getAfternoonCnt()== 0){
     					messageToSend = sender + myMessage.getAfternoonGreeting();
-        				eMsgSentCnt = eMsgSentCnt + 1;
+        				myMessage.setAfternoonCnt(myMessage.getAfternoonCnt() + 1);
     				} 				
-    			}   			
+    			}else if ((currentHour == 16) ||(currentHour == 17)) {
+    				if (myMessage.getGoodNightCnt()== 0){
+    					messageToSend = sender + myMessage.getGoodNightGreeting();
+    					myMessage.setGoodNightCnt(myMessage.getGoodNightCnt() + 1);
+    				} 				
+    			}      			
     		}
     	}  	
 
     	return messageToSend;
     }
-    
-    private void loadSenders(){
-    	for (int i=0; i < 6; i++ ){
-    		Sender user = Helper.setSenderMessages(i);
-    		messagesMap.put(i, user);
-    	}    		
-    }
+  
     
     public void sendBotMessage(String channel, String responseMessage, String sender) {
-    	Integer userId = null; 	
-    	userId = Helper.getUserId(sender);
     	
-    	switch (userId) {
-		case 0:
-			sendMessage(channel, responseMessage);
+    	
+		if (sender.equalsIgnoreCase(USER1)){
 			
-			break;
-		case 1:
-			//1 minutes to 11 minutes
-			if (serverTime.currentMinute() > 0 & serverTime.currentMinute() < 12){
-				sendMessage(channel, responseMessage);
-			}
-			break;
-		case 2:
-			//11 minutes to 30 minutes
-			if (serverTime.currentMinute() > 11 & serverTime.currentMinute() < 31){
-				sendMessage(channel, responseMessage);
-			}
-			break;
-		case 3:
-			//6 minutes to 45 minutes
-			if (serverTime.currentMinute() > 5 & serverTime.currentMinute() < 46){
-				sendMessage(channel, responseMessage);
-			}
-			break;
-		case 4:
-			//greater than 6 minutes 
-			if (serverTime.currentMinute() > 6 ){
-				sendMessage(channel, responseMessage);
-			}
-			break;
+			sendMessage(channel,Colors.BLUE + responseMessage);
 			
-		default:
-			sendMessage(channel, responseMessage);
-			break;
+		}else if (sender.equalsIgnoreCase(USER2)){
+			
+			sendMessage(channel, Colors.DARK_GREEN + responseMessage);
+						
+		} else if (sender.equalsIgnoreCase(USER3)){
+			
+			sendMessage(channel, Colors.PURPLE + responseMessage);
+			
+		}else if (sender.equalsIgnoreCase(USER4)){
+			
+			sendMessage(channel, Colors.RED + responseMessage);
+						
+		}else if (sender.equalsIgnoreCase(USER5)){
+			
+			sendMessage(channel, Colors.BROWN + responseMessage);
+						
+		}else {
+			sendMessage(channel, Colors.DARK_BLUE + responseMessage);			
 		}
 		
 	}

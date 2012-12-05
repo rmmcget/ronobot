@@ -1,5 +1,11 @@
 package org.mcgettrick.utilities;
 
+import static org.mcgettrick.ronobot.RonoBotMain.USER1;
+import static org.mcgettrick.ronobot.RonoBotMain.USER2;
+import static org.mcgettrick.ronobot.RonoBotMain.USER3;
+import static org.mcgettrick.ronobot.RonoBotMain.USER4;
+import static org.mcgettrick.ronobot.RonoBotMain.USER5;
+
 import org.mcgettrick.sender.Sender;
 import org.mcgettrick.time.BotTime;
 
@@ -25,94 +31,61 @@ public class Helper {
         else{
         	return null;
 	
-        }
-		
+        }		
 	}
 	
-	public static Sender setSenderMessages(int senderId){
+	public static Sender setSenderMessages(String nickName){
 		
 		Sender mySender = new Sender(); 
 		
-		switch (senderId) {
-		case 0:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : Hi !");
+		if (nickName.equalsIgnoreCase(USER1)){
+			
 			mySender.setMorningGreeting(" : How are you doing today ?");
-			mySender.setMidDayGreeting(" : So what did you have for lunch ?");
+			mySender.setLunchGreeting(" : So what did you have for lunch ?");
 			mySender.setAfternoonGreeting(" : A couple hours to go.... !");	
-			break;
-		case 1:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : Aloha !");
+			mySender.setGoodNightGreeting("Adios Amigo !");
+			
+		}else if (nickName.equalsIgnoreCase(USER2)){
+			
 			mySender.setMorningGreeting(" : How it hanging ?");
-			mySender.setMidDayGreeting(" : Your back, I missed you ");
+			mySender.setLunchGreeting(" : Your back, I missed you ");
 			mySender.setAfternoonGreeting(" : Working Hard are you !");
-			break;
-		case 2:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : Howdy Partner !");
+			mySender.setGoodNightGreeting("Ding...Dong...Ding...Dong..Quiting Time !");
+			
+		} else if (nickName.equalsIgnoreCase(USER3)){
+
 			mySender.setMorningGreeting(" : Top of the Morning to you ");
-			mySender.setMidDayGreeting(" : The day is half over ...");
+			mySender.setLunchGreeting(" : The day is half over ...");
 			mySender.setAfternoonGreeting(" : admit I am the one you love !");
-			break;
-		case 3:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : Hello !");
+			mySender.setGoodNightGreeting("Yabba Dabba Doo...time to roll !");
+			
+		}else if (nickName.equalsIgnoreCase(USER4)){
+
 			mySender.setMorningGreeting(" : What a beatiful day !");
-			mySender.setMidDayGreeting(" : Time to wake up !");
+			mySender.setLunchGreeting(" : Time to wake up !");
 			mySender.setAfternoonGreeting(" : brontobot is sleeping again isnt he ? !");
-			break;
-		case 4:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : I like talking to you !");
+			mySender.setGoodNightGreeting("The Day is over....Time go home and have some fun !");
+			
+		}else if (nickName.equalsIgnoreCase(USER5)){
+
 			mySender.setMorningGreeting(" : Another Awesome AT day !");
-			mySender.setMidDayGreeting(" : Only a couple hours to go...");
+			mySender.setLunchGreeting(" : Only a couple hours to go...");
 			mySender.setAfternoonGreeting(" : Yabba Dabba Doo is quiting time soon !");
-			break;
-		case 5:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : Buenos Diaz Amigos (aka Good Morning) !");
-			mySender.setMorningGreeting(" : Morning");
-			mySender.setMidDayGreeting(" : So have you seen bitsbot ?");
+			mySender.setGoodNightGreeting("Aloha...time to grab the surfboard and ride that wave out of here !");
+			
+		}else {
+
+			mySender.setMorningGreeting(" : R");
+			mySender.setLunchGreeting(" : Ronobot Mid Day Recharge Process Completed.   Ronobot Energy Level: 100%    Ronobot is ready to serve all !");
 			mySender.setAfternoonGreeting(" : My complex algorithms is giving me a headache shortly time to put me to bed");
-			break;
-		default:
-			mySender.setId(senderId);
-			mySender.setDefaultGreeting(" : Greetings");
-			mySender.setMorningGreeting(" : Good Morning");
-			mySender.setMidDayGreeting(" : Good Afternoon");
-			mySender.setAfternoonGreeting(" : Good Evening");
-			break;
+			mySender.setGoodNightGreeting("Soldier time to move out the convoy...");
 		}
+					
 		return mySender;
 		
 	}
 	
-	public static int getUserId (String sender) {
-		int userId;
-				
-		if (sender.equalsIgnoreCase("sysbajesse")){
-			userId = 0;
-		} 
-		else if (sender.equalsIgnoreCase("sys_kmburke1")) {
-			userId = 1;
-		}
-		else if (sender.equalsIgnoreCase("enricopulatzo")) {
-			userId = 2;
-		}
-		else if (sender.equalsIgnoreCase("jathom5")) {
-			userId = 3;
-		}
-		else if (sender.equalsIgnoreCase("nathanic")) {
-			userId = 4;
-		}
-		else{
-			userId = 5;
-		}
-		
-		return userId;
-		
-	}
+	
 	
 	
 }

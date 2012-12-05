@@ -4,16 +4,19 @@ import lombok.Data;
 
 @Data
 public class Sender {
-
-private Integer id;
-
-private String defaultGreeting;
+	
+private int morningCnt = 0;
+private int lunchCnt = 0;
+private int afternoonCnt = 0;
+private int goodNightCnt = 0;
 
 private String morningGreeting;
 
-private String midDayGreeting;
+private String lunchGreeting;
 
 private String afternoonGreeting;
+
+private String goodNightGreeting;
 
 
 }
