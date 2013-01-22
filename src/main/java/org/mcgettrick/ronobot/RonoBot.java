@@ -125,7 +125,7 @@ public class RonoBot extends PircBot {
     
     public static boolean ifSpecialMessage(String message){
 		boolean decision = false;
-		if ((message.equalsIgnoreCase("!ATTime")) || (message.equalsIgnoreCase("!MissionTime"))){
+		if ((message.equalsIgnoreCase("!ATTime")) || (message.equalsIgnoreCase("!MissionTime")|| (message.equalsIgnoreCase("!Favorite")))){
 			decision = true;
 		}
 		return decision;

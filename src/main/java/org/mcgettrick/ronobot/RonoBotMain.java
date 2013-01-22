@@ -13,8 +13,8 @@ public class RonoBotMain {
    
     public static void main(String[] args) throws Exception {
     	
-    	String channel = "#ronobot-test";
-    	//String channel = "#bitswebteam";
+    	//String channel = "#ronobot-test";
+    	String channel = "#bitswebteam";
     	        
         // Now start our bot up.
         RonoBot bot = new RonoBot();

@@ -32,7 +32,7 @@ public class BotTime {
 	}
 	
 	public String getTotalHoursLeftOfWork(){
-		int endofDay = 17;
+		int endofDay = 16;
 		int totalMinutes = 60;
 		String totalHoursToGo = null;
 		String totalMinutesToGo = null;
@@ -42,8 +42,7 @@ public class BotTime {
 		if (currentHour < endofDay ) {
 			totalHoursToGo = Integer.toString(endofDay - currentHour);
 			totalMinutesToGo = Integer.toString(totalMinutes - currentMinute);
-			hoursLeftOfWorkMessage = "Soldier you have  " + totalHoursToGo + " hours and " + totalMinutesToGo + " minutes before you can move your convoy out !";
-			
+			hoursLeftOfWorkMessage = "Soldier you have " + totalHoursToGo + " hours and " + totalMinutesToGo + " minutes before you can move your convoy out !";			
 			
 		}else{
 			totalHoursToGo = Integer.toString(currentHour - endofDay);
